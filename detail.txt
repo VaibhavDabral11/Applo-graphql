@@ -1,0 +1,33 @@
+graphql :- mutation Query 
+typeDefs :- inputType , return type 
+
+--schema
+user
+
+
+Apis:- 
+1. create user {send email to the user}(SIGNIN)
+
+Input request  
+{
+  "input": {
+    "name": "test@1234",
+    "email": "test@123gmail.com",
+    "password": "test@123",
+  }
+}
+Response data 
+{
+  "data": {
+    "SignUp": {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcwMjg5MzY5NSwiZXhwIjoxNzAyOTgwMDk1LCJzdWIiOiIxIn0.NI_ZZXgSjNdXxPYCNe5GrdOrLk5nvBL8TESpdrd-Aus",
+      "user": {
+        "id": "1",
+        "name": "test@1234",
+        "email": "test@123gmail.com"
+      }
+    }
+  }
+}
+
+2. LOGIN USER 
