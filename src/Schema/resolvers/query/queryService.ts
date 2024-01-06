@@ -1,7 +1,7 @@
 import { GraphQLNonNull } from 'graphql';
 import { getUserInput } from '../../typeDefs/inputType/getUserInput';
 import { AuthPayload } from '../../typeDefs/returnType/createUserpayload';
-import { PrismaClient, User } from '@prisma/client';
+import { PrismaClient} from '@prisma/client';
 import DefaultPayload from '../../typeDefs/Defaultpayload';
 const prisma = new PrismaClient();
 
@@ -11,14 +11,27 @@ export interface defaultPayloadType {
     data: any;
 }
 
+type User = {
+    id: string;
+    email: string;
+    name:string;
+    password:string;
+  };
+  
 const user = async (payload: {
     UserId: number
 }
 ): Promise<any> => {
-    return prisma.user.findUnique({
+    
+    console.log("----iud", payload.UserId )
+    const u = await prisma.user.findFirst({
         where: { id: payload.UserId }
     })
+    console.log("------sdasfs-------------")
+    console.log(u)
+    return u;
 }
+
 
 export const getuserQuery = {
     type: DefaultPayload,

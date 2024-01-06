@@ -30,7 +30,13 @@ export type Mutation = {
 
 
 export type MutationSignUpArgs = {
-  input: CreateUserInput;
+  input: SignUpInput;
+};
+
+export type SignUpInput = {
+  email: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+  password: Scalars['String']['input'];
 };
 
 export type User = {
@@ -39,13 +45,6 @@ export type User = {
   id: Scalars['ID']['output'];
   name?: Maybe<Scalars['String']['output']>;
   password?: Maybe<Scalars['String']['output']>;
-};
-
-export type CreateUserInput = {
-  __typename?: 'createUserInput';
-  email: Scalars['String']['output'];
-  name: Scalars['String']['output'];
-  password: Scalars['String']['output'];
 };
 
 export type WithIndex<TObject> = TObject & Record<string, any>;
@@ -124,9 +123,9 @@ export type ResolversTypes = ResolversObject<{
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   Mutation: ResolverTypeWrapper<{}>;
+  SignUpInput: SignUpInput;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
   User: ResolverTypeWrapper<User>;
-  createUserInput: ResolverTypeWrapper<CreateUserInput>;
 }>;
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -135,9 +134,9 @@ export type ResolversParentTypes = ResolversObject<{
   Boolean: Scalars['Boolean']['output'];
   ID: Scalars['ID']['output'];
   Mutation: {};
+  SignUpInput: SignUpInput;
   String: Scalars['String']['output'];
   User: User;
-  createUserInput: CreateUserInput;
 }>;
 
 export type AuthPayloadResolvers<ContextType = IPrismaContext, ParentType extends ResolversParentTypes['AuthPayload'] = ResolversParentTypes['AuthPayload']> = ResolversObject<{
@@ -158,17 +157,9 @@ export type UserResolvers<ContextType = IPrismaContext, ParentType extends Resol
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
-export type CreateUserInputResolvers<ContextType = IPrismaContext, ParentType extends ResolversParentTypes['createUserInput'] = ResolversParentTypes['createUserInput']> = ResolversObject<{
-  email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  password?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
 export type Resolvers<ContextType = IPrismaContext> = ResolversObject<{
   AuthPayload?: AuthPayloadResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
-  createUserInput?: CreateUserInputResolvers<ContextType>;
 }>;
 

@@ -1,7 +1,6 @@
-import { ApolloServer, gql } from 'apollo-server';
+import { ApolloServer } from 'apollo-server';
 import mutation from './src/Schema/resolvers/mutation/mutation';
 import mainTypeDefs from './src/graphql/generated/schema.graphql';
-import { Mutation } from './src/graphql/generated/graphql';
 import schema from './src/Schema/schema';
 
 const typeDefs = `#graphql
@@ -47,7 +46,17 @@ const server = new ApolloServer({
   resolvers
 });
 
-// The `listen` method launches a web server.
-server.listen().then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
-});
+function startStandaloneServer(server: ApolloServer, arg1: { listen: { port: number; }; }): { url: any; } | PromiseLike<{ url: any; }> {
+  throw new Error('Function not implemented.');
+}
+
+async function server1() {
+  const { url } = await startStandaloneServer(server, {
+    listen: { port: 6000 },
+  });
+  console.log(`🚀  Server ready at: ${url}`);
+};
+server1()
+
+
+
