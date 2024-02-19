@@ -18,6 +18,8 @@ const mainTypeDefs = gql`
   password: String
   }
   type AuthPayload {
+    status:String
+    message:String
     token: String
     user: User
   }

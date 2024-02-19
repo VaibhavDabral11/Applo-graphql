@@ -17,6 +17,8 @@ export const createUserInputType = gql`
 
 export const AuthPayloadType = gql`
   type AuthPayloadType {
+    status:String
+    message:String
     token: String
     user: User
   }

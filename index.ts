@@ -2,6 +2,8 @@ import { ApolloServer } from 'apollo-server';
 import mutation from './src/Schema/resolvers/mutation/mutation';
 import mainTypeDefs from './src/graphql/generated/schema.graphql';
 import schema from './src/Schema/schema';
+import { startStandaloneServer } from '@apollo/server/standalone';
+import { BaseContext } from '@apollo/server';
 
 const typeDefs = `#graphql
   # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
@@ -43,20 +45,12 @@ const resolvers = {
 const server = new ApolloServer({
   typeDefs: mainTypeDefs,
   schema: schema,
-  resolvers
+  resolvers,
 });
 
-function startStandaloneServer(server: ApolloServer, arg1: { listen: { port: number; }; }): { url: any; } | PromiseLike<{ url: any; }> {
-  throw new Error('Function not implemented.');
-}
-
-async function server1() {
-  const { url } = await startStandaloneServer(server, {
-    listen: { port: 6000 },
-  });
-  console.log(`🚀  Server ready at: ${url}`);
-};
-server1()
+server.listen(4000).then(({ url }) => {
+  console.log(`🚀 Server ready at ${url}`);
+});
 
 
 
